@@ -21,14 +21,12 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{
               "query": {
-                "kind": "DataTableNode",
-                "source": {
-                  "kind": "EventsQuery",
-                  "event": "qss_world_install",
-                  "select": ["count()"]
-                }
+                "kind": "HogQLQuery",
+                "query": "SELECT count() FROM events WHERE event = '\''qss_world_install'\''"
               }
             }')
+
+          echo "Raw response: $response"
 
           count=$(echo "$response" | jq '.results[0][0] // 0')
           echo "Install count: $count"
