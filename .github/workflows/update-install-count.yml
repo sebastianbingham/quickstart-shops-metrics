@@ -2,6 +2,8 @@ name: Update Install Count Badge
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "27 8 * * *"
 
 jobs:
   update:
